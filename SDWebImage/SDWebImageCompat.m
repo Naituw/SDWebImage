@@ -12,6 +12,7 @@
 #error SDWebImage is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
 #endif
 
+#if TARGET_OS_IPHONE
 inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image)
 {
     if ([image.images count] > 0)
@@ -46,3 +47,9 @@ inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image)
         return image;
     }
 }
+#else
+inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image)
+{
+    return image;
+}
+#endif

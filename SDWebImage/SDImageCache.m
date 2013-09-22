@@ -436,6 +436,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 
 - (void)backgroundCleanDisk
 {
+#if TARGET_IPHONE_OS
     UIApplication *application = [UIApplication sharedApplication];
     __block UIBackgroundTaskIdentifier bgTask = [application beginBackgroundTaskWithExpirationHandler:^
     {
@@ -454,6 +455,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         [application endBackgroundTask:bgTask];
         bgTask = UIBackgroundTaskInvalid;
     });
+#endif
 }
 
 - (unsigned long long)getSize

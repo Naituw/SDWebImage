@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Dailymotion. All rights reserved.
 //
 
-#ifdef SD_WEBP
+#if SD_WEBP
 #import "UIImage+WebP.h"
 #import "webp/decode.h"
 

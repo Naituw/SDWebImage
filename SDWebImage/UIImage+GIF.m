@@ -13,6 +13,7 @@
 
 + (UIImage *)sd_animatedGIFWithData:(NSData *)data
 {
+#if TARGET_IPHONE_OS
     if (!data)
     {
         return nil;
@@ -57,10 +58,14 @@
     CFRelease(source);
 
     return animatedImage;
+#else
+    return [[UIImage alloc] initWithData:data];
+#endif
 }
 
 + (UIImage *)sd_animatedGIFNamed:(NSString *)name
 {
+#if TARGET_IPHONE_OS
     CGFloat scale = [UIScreen mainScreen].scale;
     
     if (scale > 1.0f)
@@ -97,11 +102,15 @@
         }
         
         return [UIImage imageNamed:name];
-    }    
+    }
+#else
+    return [UIImage imageNamed:name];
+#endif
 }
 
 - (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size
 {
+#if TARGET_IPHONE_OS
     if (CGSizeEqualToSize(self.size, size) || CGSizeEqualToSize(size, CGSizeZero))
     {
         return self;
@@ -140,6 +149,9 @@
     UIGraphicsEndImageContext();
 	
 	return [UIImage animatedImageWithImages:scaledImages duration:self.duration];
+#else
+    return self;
+#endif
 }
 
 @end

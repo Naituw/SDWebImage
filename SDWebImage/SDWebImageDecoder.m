@@ -14,6 +14,7 @@
 
 + (UIImage *)decodedImageWithImage:(UIImage *)image
 {
+#if TARGET_IPHONE_OS
     if (image.images)
     {
         // Do not decode animated images
@@ -71,6 +72,9 @@
     UIImage *decompressedImage = [UIImage imageWithCGImage:decompressedImageRef scale:image.scale orientation:image.imageOrientation];
     CGImageRelease(decompressedImageRef);
     return decompressedImage;
+#else
+    return image;
+#endif
 }
 
 @end

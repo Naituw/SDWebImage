@@ -13,10 +13,6 @@
 #error SDWebImage does not support Objective-C Garbage Collection
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
-#error SDWebImage doesn't support Deployement Target version < 5.0
-#endif
-
 #if !TARGET_OS_IPHONE
 #import <AppKit/AppKit.h>
 #ifndef UIImage
@@ -25,9 +21,15 @@
 #ifndef UIImageView
 #define UIImageView NSImageView
 #endif
+#import "NSImage+SDCompat.h"
 #else
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_5_0
+#error SDWebImage doesn't support Deployement Target version < 5.0
+#endif
 #import <UIKit/UIKit.h>
 #endif
+
+extern inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image);
 
 #if OS_OBJECT_USE_OBJC
     #undef SDDispatchQueueRelease
@@ -40,8 +42,6 @@
     #define SDDispatchQueueRelease(q) (dispatch_release(q))
     #define SDDispatchQueueSetterSementics assign
 #endif
-
-extern inline UIImage *SDScaledImageForKey(NSString *key, UIImage *image);
 
 #define dispatch_main_sync_safe(block)\
     if ([NSThread isMainThread])\

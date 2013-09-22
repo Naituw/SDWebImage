@@ -48,6 +48,12 @@
     return self;
 }
 
+#if !TARGET_IPHONE_OS
+#ifndef NSFoundationVersionNumber_iOS_5_1
+#define NSFoundationVersionNumber_iOS_5_1 NSFoundationVersionNumber10_7
+#endif
+#endif
+
 - (void)start
 {
     if (self.isCancelled)
@@ -69,7 +75,6 @@
             self.progressBlock(0, -1);
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
-
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1)
         {
             // Make sure to run the runloop in our background thread so it can process downloaded data
@@ -192,7 +197,7 @@
         // Thanks to the author @Nyx0uf
 
         // Get the total bytes downloaded
-        const NSUInteger totalSize = self.imageData.length;
+        const long long totalSize = self.imageData.length;
 
         // Update the data source, we must pass ALL the data, not just the new bytes
         CGImageSourceRef imageSource = CGImageSourceCreateIncremental(NULL);
@@ -293,10 +298,12 @@
             
             image = [self scaledImageForKey:self.request.URL.absoluteString image:image];
             
+#if TARGET_IPHONE_OS
             if (!image.images) // Do not force decod animated GIFs
             {
                 image = [UIImage decodedImageWithImage:image];
             }
+#endif
             
             if (CGSizeEqualToSize(image.size, CGSizeZero))
             {

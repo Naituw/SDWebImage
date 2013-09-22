@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Dailymotion. All rights reserved.
 //
 
-#ifdef SD_WEBP
-#import <UIKit/UIKit.h>
+#if SD_WEBP
+#import "SDWebImageCompat.h"
 
 // Fix for issue #416 Undefined symbols for architecture armv7 since WebP introduction when deploying to device
 void WebPInitPremultiplyNEON(void);

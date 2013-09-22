@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "SDWebImageCompat.h"
 #import "NSData+GIF.h"
-#import <UIKit/UIKit.h>
 
 @interface UIImage (GIF)
 
