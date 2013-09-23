@@ -191,21 +191,20 @@
 		A18A6CCE172DC33A00419892 /* NSData+GIF.h in Headers */ = {isa = PBXBuildFile; fileRef = A18A6CCB172DC33A00419892 /* NSData+GIF.h */; };
 		A18A6CCF172DC33A00419892 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A6CCC172DC33A00419892 /* NSData+GIF.m */; };
 		A18A6CD0172DC33A00419892 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A6CCC172DC33A00419892 /* NSData+GIF.m */; };
-		C651D33117EF1498007242F9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C651D33017EF1498007242F9 /* Cocoa.framework */; };
-		C651D33B17EF1498007242F9 /* SKWebImageMac.m in Sources */ = {isa = PBXBuildFile; fileRef = C651D33A17EF1498007242F9 /* SKWebImageMac.m */; };
-		C651D35517EF14CE007242F9 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5340674F167780C40042B59E /* SDWebImageCompat.m */; };
-		C651D35617EF14CE007242F9 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D8C148C56230056699D /* SDWebImageDownloader.m */; };
-		C651D35717EF14CE007242F9 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 530E49E416460AE2002868E7 /* SDWebImageDownloaderOperation.m */; };
-		C651D35817EF14CE007242F9 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D86148C56230056699D /* SDImageCache.m */; };
-		C651D35917EF14CE007242F9 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D8F148C56230056699D /* SDWebImageManager.m */; };
-		C651D35A17EF14CE007242F9 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D8A148C56230056699D /* SDWebImageDecoder.m */; };
-		C651D35B17EF14CE007242F9 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D92148C56230056699D /* SDWebImagePrefetcher.m */; };
-		C651D35C17EF14CE007242F9 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A6CCC172DC33A00419892 /* NSData+GIF.m */; };
-		C651D35D17EF1864007242F9 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDFB8917623F7C00698166 /* UIImage+MultiFormat.m */; };
-		C651D35E17EF1864007242F9 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A6CC6172DC28500419892 /* UIImage+GIF.m */; };
-		C651D35F17EF1864007242F9 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDFB921762547C00698166 /* UIImage+WebP.m */; };
-		C651D36617EF1A54007242F9 /* NSImage+SDCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = C651D36417EF1A54007242F9 /* NSImage+SDCompat.h */; };
-		C651D36717EF1A54007242F9 /* NSImage+SDCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = C651D36517EF1A54007242F9 /* NSImage+SDCompat.m */; };
+		C686ACC617EF27DE00252700 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C651D33017EF1498007242F9 /* Cocoa.framework */; };
+		C686ACCC17EF27DE00252700 /* SDWebImageMac.m in Sources */ = {isa = PBXBuildFile; fileRef = C686ACCB17EF27DE00252700 /* SDWebImageMac.m */; };
+		C686ACE517EF280100252700 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5340674F167780C40042B59E /* SDWebImageCompat.m */; };
+		C686ACE617EF280100252700 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D8C148C56230056699D /* SDWebImageDownloader.m */; };
+		C686ACE717EF280100252700 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 530E49E416460AE2002868E7 /* SDWebImageDownloaderOperation.m */; };
+		C686ACE817EF280100252700 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D86148C56230056699D /* SDImageCache.m */; };
+		C686ACE917EF280100252700 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D8F148C56230056699D /* SDWebImageManager.m */; };
+		C686ACEA17EF280100252700 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D8A148C56230056699D /* SDWebImageDecoder.m */; };
+		C686ACEB17EF280100252700 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 53922D92148C56230056699D /* SDWebImagePrefetcher.m */; };
+		C686ACEC17EF280100252700 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDFB8917623F7C00698166 /* UIImage+MultiFormat.m */; };
+		C686ACED17EF280100252700 /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A6CCC172DC33A00419892 /* NSData+GIF.m */; };
+		C686ACEE17EF280100252700 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = A18A6CC6172DC28500419892 /* UIImage+GIF.m */; };
+		C686ACEF17EF280100252700 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EDFB921762547C00698166 /* UIImage+WebP.m */; };
+		C686ACF017EF280100252700 /* NSImage+SDCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = C651D36517EF1A54007242F9 /* NSImage+SDCompat.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,17 +293,17 @@
 		A18A6CC6172DC28500419892 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
 		A18A6CCB172DC33A00419892 /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
 		A18A6CCC172DC33A00419892 /* NSData+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+GIF.m"; sourceTree = "<group>"; };
-		C651D32F17EF1498007242F9 /* SKWebImageMac.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SKWebImageMac.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		C651D33017EF1498007242F9 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		C651D33317EF1498007242F9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C651D33417EF1498007242F9 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C651D33517EF1498007242F9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		C651D33817EF1498007242F9 /* SKWebImageMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SKWebImageMac-Prefix.pch"; sourceTree = "<group>"; };
-		C651D33917EF1498007242F9 /* SKWebImageMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKWebImageMac.h; sourceTree = "<group>"; };
-		C651D33A17EF1498007242F9 /* SKWebImageMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKWebImageMac.m; sourceTree = "<group>"; };
 		C651D34117EF1498007242F9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C651D36417EF1A54007242F9 /* NSImage+SDCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+SDCompat.h"; sourceTree = "<group>"; };
 		C651D36517EF1A54007242F9 /* NSImage+SDCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+SDCompat.m"; sourceTree = "<group>"; };
+		C686ACC517EF27DD00252700 /* libSDWebImageMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImageMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C686ACC917EF27DE00252700 /* SDWebImageMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SDWebImageMac-Prefix.pch"; sourceTree = "<group>"; };
+		C686ACCA17EF27DE00252700 /* SDWebImageMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageMac.h; sourceTree = "<group>"; };
+		C686ACCB17EF27DE00252700 /* SDWebImageMac.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageMac.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,11 +337,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C651D32C17EF1498007242F9 /* Frameworks */ = {
+		C686ACC217EF27DD00252700 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C651D33117EF1498007242F9 /* Cocoa.framework in Frameworks */,
+				C686ACC617EF27DE00252700 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				53922D74148C55820056699D /* SDWebImage */,
-				C651D33617EF1498007242F9 /* SKWebImageMac */,
+				C686ACC717EF27DE00252700 /* SDWebImageMac */,
 				53922D71148C55820056699D /* Frameworks */,
 				53922D70148C55820056699D /* Products */,
 			);
@@ -366,7 +365,7 @@
 				53761325155AD0D5005750A4 /* libSDWebImage.a */,
 				531041E0157EAFA400BBABC3 /* libSDWebImage+MKAnnotation.a */,
 				537D95C117ECC1FE0097C263 /* libSDWebImage copy.a */,
-				C651D32F17EF1498007242F9 /* SKWebImageMac.dylib */,
+				C686ACC517EF27DD00252700 /* libSDWebImageMac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -536,20 +535,20 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		C651D33617EF1498007242F9 /* SKWebImageMac */ = {
+		C686ACC717EF27DE00252700 /* SDWebImageMac */ = {
 			isa = PBXGroup;
 			children = (
-				C651D33917EF1498007242F9 /* SKWebImageMac.h */,
-				C651D33A17EF1498007242F9 /* SKWebImageMac.m */,
-				C651D33717EF1498007242F9 /* Supporting Files */,
+				C686ACCA17EF27DE00252700 /* SDWebImageMac.h */,
+				C686ACCB17EF27DE00252700 /* SDWebImageMac.m */,
+				C686ACC817EF27DE00252700 /* Supporting Files */,
 			);
-			path = SKWebImageMac;
+			path = SDWebImageMac;
 			sourceTree = "<group>";
 		};
-		C651D33717EF1498007242F9 /* Supporting Files */ = {
+		C686ACC817EF27DE00252700 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C651D33817EF1498007242F9 /* SKWebImageMac-Prefix.pch */,
+				C686ACC917EF27DE00252700 /* SDWebImageMac-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -650,11 +649,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C651D32D17EF1498007242F9 /* Headers */ = {
+		C686ACC317EF27DD00252700 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C651D36617EF1A54007242F9 /* NSImage+SDCompat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,22 +712,22 @@
 			productReference = 537D95C117ECC1FE0097C263 /* libSDWebImage copy.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		C651D32E17EF1498007242F9 /* SKWebImageMac */ = {
+		C686ACC417EF27DD00252700 /* SDWebImageMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C651D35317EF1499007242F9 /* Build configuration list for PBXNativeTarget "SKWebImageMac" */;
+			buildConfigurationList = C686ACDF17EF27DE00252700 /* Build configuration list for PBXNativeTarget "SDWebImageMac" */;
 			buildPhases = (
-				C651D32B17EF1498007242F9 /* Sources */,
-				C651D32C17EF1498007242F9 /* Frameworks */,
-				C651D32D17EF1498007242F9 /* Headers */,
+				C686ACC117EF27DD00252700 /* Sources */,
+				C686ACC217EF27DD00252700 /* Frameworks */,
+				C686ACC317EF27DD00252700 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SKWebImageMac;
-			productName = SKWebImageMac;
-			productReference = C651D32F17EF1498007242F9 /* SKWebImageMac.dylib */;
-			productType = "com.apple.product-type.library.dynamic";
+			name = SDWebImageMac;
+			productName = SDWebImageMac;
+			productReference = C686ACC517EF27DD00252700 /* libSDWebImageMac.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -756,7 +754,7 @@
 				537D957317ECC1FE0097C263 /* SDWebImage+WebP */,
 				531041C2157EAFA400BBABC3 /* SDWebImage+MKAnnotation */,
 				539F912B16316D2D00160719 /* SDWebImageFramework */,
-				C651D32E17EF1498007242F9 /* SKWebImageMac */,
+				C686ACC417EF27DD00252700 /* SDWebImageMac */,
 			);
 		};
 /* End PBXProject section */
@@ -916,23 +914,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C651D32B17EF1498007242F9 /* Sources */ = {
+		C686ACC117EF27DD00252700 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C651D35D17EF1864007242F9 /* UIImage+MultiFormat.m in Sources */,
-				C651D35E17EF1864007242F9 /* UIImage+GIF.m in Sources */,
-				C651D35F17EF1864007242F9 /* UIImage+WebP.m in Sources */,
-				C651D35517EF14CE007242F9 /* SDWebImageCompat.m in Sources */,
-				C651D36717EF1A54007242F9 /* NSImage+SDCompat.m in Sources */,
-				C651D35617EF14CE007242F9 /* SDWebImageDownloader.m in Sources */,
-				C651D35717EF14CE007242F9 /* SDWebImageDownloaderOperation.m in Sources */,
-				C651D35817EF14CE007242F9 /* SDImageCache.m in Sources */,
-				C651D35917EF14CE007242F9 /* SDWebImageManager.m in Sources */,
-				C651D35A17EF14CE007242F9 /* SDWebImageDecoder.m in Sources */,
-				C651D35B17EF14CE007242F9 /* SDWebImagePrefetcher.m in Sources */,
-				C651D35C17EF14CE007242F9 /* NSData+GIF.m in Sources */,
-				C651D33B17EF1498007242F9 /* SKWebImageMac.m in Sources */,
+				C686ACE517EF280100252700 /* SDWebImageCompat.m in Sources */,
+				C686ACE617EF280100252700 /* SDWebImageDownloader.m in Sources */,
+				C686ACE717EF280100252700 /* SDWebImageDownloaderOperation.m in Sources */,
+				C686ACE817EF280100252700 /* SDImageCache.m in Sources */,
+				C686ACE917EF280100252700 /* SDWebImageManager.m in Sources */,
+				C686ACEA17EF280100252700 /* SDWebImageDecoder.m in Sources */,
+				C686ACEB17EF280100252700 /* SDWebImagePrefetcher.m in Sources */,
+				C686ACEC17EF280100252700 /* UIImage+MultiFormat.m in Sources */,
+				C686ACED17EF280100252700 /* NSData+GIF.m in Sources */,
+				C686ACEE17EF280100252700 /* UIImage+GIF.m in Sources */,
+				C686ACEF17EF280100252700 /* UIImage+WebP.m in Sources */,
+				C686ACF017EF280100252700 /* NSImage+SDCompat.m in Sources */,
+				C686ACCC17EF27DE00252700 /* SDWebImageMac.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,9 +1106,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = Vendors/libwebp/src;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PUBLIC_HEADERS_FOLDER_PATH = include/SDWebImage;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -1136,9 +1135,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = Vendors/libwebp/src;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PUBLIC_HEADERS_FOLDER_PATH = include/SDWebImage;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx10.8;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1157,7 +1157,7 @@
 			};
 			name = Release;
 		};
-		C651D34F17EF1499007242F9 /* Debug */ = {
+		C686ACE017EF27DE00252700 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1171,8 +1171,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1180,11 +1178,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SKWebImageMac/SKWebImageMac-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"SD_WEBP=0",
-				);
+				GCC_PREFIX_HEADER = "SDWebImageMac/SDWebImageMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -1194,7 +1189,7 @@
 			};
 			name = Debug;
 		};
-		C651D35017EF1499007242F9 /* Release */ = {
+		C686ACE117EF27DE00252700 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1209,8 +1204,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1219,8 +1212,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SKWebImageMac/SKWebImageMac-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "SD_WEBP=0";
+				GCC_PREFIX_HEADER = "SDWebImageMac/SDWebImageMac-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -1277,11 +1270,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C651D35317EF1499007242F9 /* Build configuration list for PBXNativeTarget "SKWebImageMac" */ = {
+		C686ACDF17EF27DE00252700 /* Build configuration list for PBXNativeTarget "SDWebImageMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C651D34F17EF1499007242F9 /* Debug */,
-				C651D35017EF1499007242F9 /* Release */,
+				C686ACE017EF27DE00252700 /* Debug */,
+				C686ACE117EF27DE00252700 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

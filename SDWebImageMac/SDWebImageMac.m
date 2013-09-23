@@ -1,13 +1,13 @@
 //
-//  SKWebImageMac.m
-//  SKWebImageMac
+//  SDWebImageMac.m
+//  SDWebImageMac
 //
 //  Created by Wutian on 13-9-22.
 //  Copyright (c) 2013年 Dailymotion. All rights reserved.
 //
 
-#import "SKWebImageMac.h"
+#import "SDWebImageMac.h"
 
-@implementation SKWebImageMac
+@implementation SDWebImageMac
 
 @end

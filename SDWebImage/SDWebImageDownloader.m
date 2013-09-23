@@ -177,15 +177,14 @@ static NSString *const kCompletedCallbackKey = @"completed";
         return;
     }
     
-    dispatch_barrier_sync(self.barrierQueue, ^
-    {
+    void (^barrierBlock)(void) = ^{
         BOOL first = NO;
         if (!self.URLCallbacks[url])
         {
             self.URLCallbacks[url] = NSMutableArray.new;
             first = YES;
         }
-
+        
         // Handle single download of simultaneous download request for the same URL
         NSMutableArray *callbacksForURL = self.URLCallbacks[url];
         NSMutableDictionary *callbacks = NSMutableDictionary.new;
@@ -193,12 +192,18 @@ static NSString *const kCompletedCallbackKey = @"completed";
         if (completedBlock) callbacks[kCompletedCallbackKey] = [completedBlock copy];
         [callbacksForURL addObject:callbacks];
         self.URLCallbacks[url] = callbacksForURL;
-
+        
         if (first)
         {
             createCallback();
         }
-    });
+    };
+    
+#if TARGET_IPHONE_OS
+    dispatch_barrier_sync(self.barrierQueue, barrierBlock);
+#else
+    dispatch_barrier_async(self.barrierQueue, barrierBlock);
+#endif
 }
 
 - (NSArray *)callbacksForURL:(NSURL *)url

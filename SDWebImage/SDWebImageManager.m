@@ -56,13 +56,21 @@
 
 - (NSString *)cacheKeyForURL:(NSURL *)url
 {
+    return [self cacheKeyForURL:url stylerKey:nil];
+}
+- (NSString *)cacheKeyForURL:(NSURL *)url stylerKey:(NSString *)stylerKey
+{
     if (self.cacheKeyFilter)
     {
         return self.cacheKeyFilter(url);
     }
-    else
+    else if (!stylerKey)
     {
         return [url absoluteString];
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%@_sd_styler_%@", [url absoluteString], stylerKey];
     }
 }
 
@@ -73,7 +81,12 @@
 }
 
 - (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
-{    
+{
+    return [self downloadWithURL:url options:options progress:progressBlock styler:NULL stylerKey:nil completed:completedBlock];
+}
+
+- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock styler:(UIImage * (^)(UIImage *))styler stylerKey:(NSString *)stylerKey completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
     // Invoking this method without a completedBlock is pointless
     NSParameterAssert(completedBlock);
     
@@ -113,7 +126,7 @@
     {
         [self.runningOperations addObject:operation];
     }
-    NSString *key = [self cacheKeyForURL:url];
+    NSString *key = [self cacheKeyForURL:url stylerKey:stylerKey];
 
     operation.cacheOperation = [self.imageCache queryDiskCacheForKey:key done:^(UIImage *image, SDImageCacheType cacheType)
     {
@@ -184,6 +197,45 @@
                         // Image refresh hit the NSURLCache cache, do not call the completion block
                     }
                     // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
+                    else if (downloadedImage && stylerKey)
+                    {
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                            
+                            UIImage *transformedImage = downloadedImage;
+                            NSData *dataToStore = data;
+                            
+                            if (styler)
+                            {
+                                transformedImage = styler(downloadedImage);
+                                
+                                if (![transformedImage isEqual:image])
+                                {
+#if TARGET_IPHONE_OS
+                                    dataToStore = UIImagePNGRepresentation(transformedImage);
+#else
+                                    CGImageRef CGImage = [transformedImage CGImageForProposedRect:NULL context:NULL hints:nil];
+                                    NSMutableData * imageData = [NSMutableData data];
+                                    CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, (CFStringRef)kUTTypePNG, 1, NULL);
+                                    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:@(1.0), kCGImageDestinationLossyCompressionQuality, nil];
+                                    CGImageDestinationAddImage(destination, CGImage, (__bridge CFDictionaryRef)properties);
+                                    CGImageDestinationFinalize(destination);
+                                    CFRelease(destination);
+                                    dataToStore = imageData;
+#endif
+                                }
+                            }
+                            
+                            dispatch_main_sync_safe(^{
+                                completedBlock(transformedImage, nil, SDImageCacheTypeNone, finished);
+                            });
+                            
+                            if (transformedImage && finished)
+                            {
+                                [self.imageCache storeImage:transformedImage imageData:dataToStore forKey:key toDisk:cacheOnDisk];
+                            }
+                        });
+
+                    }
                     else if (downloadedImage && !downloadedImage.images && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)])
                     {
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^

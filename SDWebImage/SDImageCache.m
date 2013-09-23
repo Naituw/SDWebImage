@@ -57,6 +57,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         // Init the memory cache
         _memCache = [[NSCache alloc] init];
         _memCache.name = fullNamespace;
+        [_memCache setTotalCostLimit:1];
 
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
