@@ -56,6 +56,7 @@ typedef void(^SDWebImageDownloaderCompletedBlock)(UIImage *image, NSData *data, 
  * Changes download operations execution order. Default value is `SDWebImageDownloaderFIFOExecutionOrder`.
  */
 @property (assign, nonatomic) SDWebImageDownloaderExecutionOrder executionOrder;
+@property (assign, nonatomic, readonly) BOOL downloading;
 
 + (SDWebImageDownloader *)sharedDownloader;
 

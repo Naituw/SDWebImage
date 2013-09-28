@@ -223,11 +223,16 @@ static NSString *const kCompletedCallbackKey = @"completed";
     {
         [self.URLCallbacks removeObjectForKey:url];
         
-        if (!self.URLCallbacks.count)
+        if (!self.downloading)
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloaderDidFinishDownloadNotification object:self];
         }
     });
+}
+
+- (BOOL)downloading
+{
+    return self.URLCallbacks.count > 0;
 }
 
 @end
