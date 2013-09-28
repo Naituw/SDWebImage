@@ -56,7 +56,7 @@
 
 - (SDWebImageDownloader *)createDownloader
 {
-    return SDWebImageDownloader.new;
+    return [SDWebImageDownloader sharedDownloader];
 }
 
 - (NSString *)cacheKeyForURL:(NSURL *)url
