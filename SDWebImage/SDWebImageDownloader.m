@@ -12,6 +12,7 @@
 
 NSString *const SDWebImageDownloadStartNotification = @"SDWebImageDownloadStartNotification";
 NSString *const SDWebImageDownloadStopNotification = @"SDWebImageDownloadStopNotification";
+NSString *const SDWebImageDownloaderDidFinishDownloadNotification = @"SDWebImageDownloaderDidFinishDownloadNotification";
 
 static NSString *const kProgressCallbackKey = @"progress";
 static NSString *const kCompletedCallbackKey = @"completed";
@@ -221,6 +222,11 @@ static NSString *const kCompletedCallbackKey = @"completed";
     dispatch_barrier_async(self.barrierQueue, ^
     {
         [self.URLCallbacks removeObjectForKey:url];
+        
+        if (!self.URLCallbacks.count)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloaderDidFinishDownloadNotification object:self];
+        }
     });
 }
 

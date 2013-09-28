@@ -42,7 +42,7 @@
     if ((self = [super init]))
     {
         _imageCache = [self createCache];
-        _imageDownloader = SDWebImageDownloader.new;
+        _imageDownloader = [self createDownloader];
         _failedURLs = NSMutableArray.new;
         _runningOperations = NSMutableArray.new;
     }
@@ -52,6 +52,11 @@
 - (SDImageCache *)createCache
 {
     return [SDImageCache sharedImageCache];
+}
+
+- (SDWebImageDownloader *)createDownloader
+{
+    return SDWebImageDownloader.new;
 }
 
 - (NSString *)cacheKeyForURL:(NSURL *)url
@@ -196,7 +201,6 @@
                     {
                         // Image refresh hit the NSURLCache cache, do not call the completion block
                     }
-                    // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
                     else if (downloadedImage && stylerKey)
                     {
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -236,6 +240,7 @@
                         });
 
                     }
+                    // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
                     else if (downloadedImage && !downloadedImage.images && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)])
                     {
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^
