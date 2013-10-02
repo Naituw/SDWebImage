@@ -48,6 +48,8 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     {
         NSString *fullNamespace = [@"com.hackemist.SDWebImageCache." stringByAppendingString:ns];
 
+        _allowsMemoryCache = YES;
+        
         // Create IO serial queue
         _ioQueue = dispatch_queue_create("com.hackemist.SDWebImageCache", DISPATCH_QUEUE_SERIAL);
 
@@ -57,7 +59,6 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         // Init the memory cache
         _memCache = [[NSCache alloc] init];
         _memCache.name = fullNamespace;
-        [_memCache setTotalCostLimit:1];
 
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -139,6 +140,11 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 
 #pragma mark ImageCache
 
+- (void)setAllowsMemoryCache:(BOOL)allowsMemoryCache
+{
+    _allowsMemoryCache = allowsMemoryCache;
+}
+
 - (void)storeImage:(UIImage *)image imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk
 {
     if (!image || !key)
@@ -146,7 +152,10 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         return;
     }
 
-    [self.memCache setObject:image forKey:key cost:image.size.height * image.size.width * image.scale];
+    if (self.allowsMemoryCache)
+    {
+        [self.memCache setObject:image forKey:key cost:image.size.height * image.size.width * image.scale];
+    }
 
     if (toDisk)
     {
@@ -219,7 +228,8 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
     
     // Second check the disk cache...
     UIImage *diskImage = [self diskImageForKey:key];
-    if (diskImage)
+    
+    if (diskImage && self.allowsMemoryCache)
     {
         CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
         [self.memCache setObject:diskImage forKey:key cost:cost];
@@ -300,7 +310,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         @autoreleasepool
         {
             UIImage *diskImage = [self diskImageForKey:key];
-            if (diskImage)
+            if (diskImage && self.allowsMemoryCache)
             {
                 CGFloat cost = diskImage.size.height * diskImage.size.width * diskImage.scale;
                 [self.memCache setObject:diskImage forKey:key cost:cost];

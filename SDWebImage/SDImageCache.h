@@ -32,6 +32,7 @@ typedef enum SDImageCacheType SDImageCacheType;
  */
 @interface SDImageCache : NSObject
 
+@property (assign, nonatomic) BOOL allowsMemoryCache;
 /**
  * The maximum length of time to keep an image in the cache, in seconds
  */

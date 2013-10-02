@@ -200,11 +200,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
         }
     };
     
-#if TARGET_IPHONE_OS
     dispatch_barrier_sync(self.barrierQueue, barrierBlock);
-#else
-    dispatch_barrier_async(self.barrierQueue, barrierBlock);
-#endif
 }
 
 - (NSArray *)callbacksForURL:(NSURL *)url
