@@ -8,6 +8,9 @@
 
 #import "UIImage+GIF.h"
 #import <ImageIO/ImageIO.h>
+#import <objc/runtime.h>
+
+NSString * const NSImageFrameDurationsPropertyKey = @"NSImageFrameDurationsPropertyKey";
 
 @implementation UIImage (GIF)
 
@@ -59,7 +62,69 @@
 
     return animatedImage;
 #else
-    return [[UIImage alloc] initWithData:data];
+    
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+    
+    NSImage * image = [[UIImage alloc] initWithData:data];
+    
+    if (imageSource)
+    {
+        NSBitmapImageRep * animatableRep = nil;
+        
+        for (NSImageRep * rep in image.representations)
+        {
+            if ([rep isKindOfClass:[NSBitmapImageRep class]])
+            {
+                animatableRep = (NSBitmapImageRep *)rep;
+                break;
+            }
+        }
+        
+        NSInteger frameCount = [[animatableRep valueForProperty:NSImageFrameCount] integerValue];
+        
+        if (frameCount > 1)
+        {
+            NSMutableArray * frameDurations = [NSMutableArray array];
+            
+            for (NSInteger idx = 0; idx < frameCount; idx++)
+            {
+                CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(imageSource, idx, NULL);
+                if (!properties) break;
+                
+                NSDictionary * GIFProperties = [(__bridge NSDictionary *)properties objectForKey:(__bridge NSString *)kCGImagePropertyGIFDictionary];
+                
+                BOOL stop = YES;
+                
+                if (GIFProperties)
+                {
+                    id durationObject = [GIFProperties objectForKey:(__bridge NSString *)kCGImagePropertyGIFUnclampedDelayTime];
+                    if (!durationObject) durationObject = [GIFProperties objectForKey:(__bridge NSString *)kCGImagePropertyGIFDelayTime];
+                    
+                    if ([durationObject doubleValue])
+                    {
+                        [frameDurations addObject:durationObject];
+                        stop = NO;
+                    }
+                }
+                
+                CFRelease(properties);
+                
+                if (stop)
+                {
+                    break;
+                }
+            }
+            
+            if (frameDurations.count == (NSUInteger)frameCount)
+            {
+                objc_setAssociatedObject(image, (__bridge CFStringRef)NSImageFrameDurationsPropertyKey, frameDurations, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }
+        }
+        
+        CFRelease(imageSource);
+    }
+    
+    return image;
 #endif
 }
 

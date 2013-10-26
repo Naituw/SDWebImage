@@ -9,6 +9,8 @@
 #import "SDWebImageCompat.h"
 #import "NSData+GIF.h"
 
+extern NSString * const NSImageFrameDurationsPropertyKey;
+
 @interface UIImage (GIF)
 
 + (UIImage *)sd_animatedGIFNamed:(NSString *)name;
