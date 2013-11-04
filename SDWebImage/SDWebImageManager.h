@@ -160,7 +160,12 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
                                    options:(SDWebImageOptions)options
                                   progress:(SDWebImageDownloaderProgressBlock)progressBlock
                                  completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;
+
+- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url operationClass:(Class)operationClass options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;
+
 - (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock styler:(UIImage * (^)(UIImage *))styler stylerKey:(NSString *)stylerKey completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;
+
+- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url operationClass:(Class)operationClass options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock styler:(UIImage * (^)(UIImage *))styler stylerKey:(NSString *)stylerKey completed:(SDWebImageCompletedWithFinishedBlock)completedBlock;
 
 /**
  * Cancel all current opreations

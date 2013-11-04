@@ -87,10 +87,20 @@
 
 - (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
 {
-    return [self downloadWithURL:url options:options progress:progressBlock styler:NULL stylerKey:nil completed:completedBlock];
+    return [self downloadWithURL:url operationClass:nil options:options progress:progressBlock completed:completedBlock];
+}
+
+- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url operationClass:(Class)operationClass options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url operationClass:nil options:options progress:progressBlock styler:NULL stylerKey:nil completed:completedBlock];
 }
 
 - (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock styler:(UIImage * (^)(UIImage *))styler stylerKey:(NSString *)stylerKey completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
+{
+    return [self downloadWithURL:url operationClass:nil options:options progress:progressBlock styler:styler stylerKey:stylerKey completed:completedBlock];
+}
+
+- (id<SDWebImageOperation>)downloadWithURL:(NSURL *)url operationClass:(Class)operationClass options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock styler:(UIImage * (^)(UIImage *))styler stylerKey:(NSString *)stylerKey completed:(SDWebImageCompletedWithFinishedBlock)completedBlock
 {
     // Invoking this method without a completedBlock is pointless
     NSParameterAssert(completedBlock);
@@ -169,7 +179,7 @@
                 // ignore image read from NSURLCache if image if cached but force refreshing
                 downloaderOptions |= SDWebImageDownloaderIgnoreCachedResponse;
             }
-            id<SDWebImageOperation> subOperation = [self.imageDownloader downloadImageWithURL:url options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished)
+            id<SDWebImageOperation> subOperation = [self.imageDownloader downloadImageWithURL:url operationClass:operationClass options:downloaderOptions progress:progressBlock completed:^(UIImage *downloadedImage, NSData *data, NSError *error, BOOL finished)
             {                
                 if (weakOperation.isCancelled)
                 {
