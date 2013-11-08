@@ -165,4 +165,6 @@ typedef enum SDImageCacheType SDImageCacheType;
  */
 - (BOOL)diskImageExistsWithKey:(NSString *)key;
 
+- (NSString *)defaultCachePathForKey:(NSString *)key;
+
 @end
