@@ -59,7 +59,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         // Init the memory cache
         _memCache = [[NSCache alloc] init];
         _memCache.name = fullNamespace;
-        _memCache.totalCostLimit = (2500 + 3600) / 2 * 50; // avatar costs 2500, thumbnail costs 3600
+        _memCache.totalCostLimit = (10000 + 14400) / 2 * 50; // avatar costs 10000, thumbnail costs 14400
 
         // Init the disk cache
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
