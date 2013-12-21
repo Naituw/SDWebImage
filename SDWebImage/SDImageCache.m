@@ -127,6 +127,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
 - (NSString *)cachedFileNameForKey:(NSString *)key
 {
     NSString * ext = [[key componentsSeparatedByString:@"."] lastObject];
+    if ([ext rangeOfString:@"/"].location != NSNotFound) ext = nil;
     if (!ext) ext = @".png";
     
     const char *str = [key UTF8String];
