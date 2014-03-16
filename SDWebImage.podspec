@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary = 'Asynchronous image downloader with cache support with an UIImageView category.'
   s.homepage = 'https://github.com/Naituw/SDWebImage'
   s.author = { 'Olivier Poitrey' => 'rs@dailymotion.com' }
-  s.source = { :git => 'https://github.com/Naituw/SDWebImage.git'}
+  s.source = { :git => 'https://github.com/Naituw/SDWebImage.git', :tag => '3.4'}
 
   s.description = 'This library provides a category for UIImageView with support for remote '      \
                   'images coming from the web. It provides an UIImageView category adding web '    \
@@ -21,21 +21,24 @@ Pod::Spec.new do |s|
 
   s.default_subspec = 'Core'
 
+
   s.subspec 'Core' do |core|
     core.source_files = 'SDWebImage/{NS,SD,UI}*.{h,m}'
-    core.exclude_files = 'SDWebImage/UIImage+WebP.{h,m}'
+    core.prefix_header_file = 'SDWebImage/SDWebImageCompat.h'
+    core.exclude_files = "SDWebImage/UIImage+Web*", "SDWebImage/UIButton*", "SDWebImage/UIImageView*"
   end
 
-  s.subspec 'MapKit' do |mk|
-    mk.source_files = 'SDWebImage/MKAnnotationView+WebCache.*'
-    mk.framework = 'MapKit'
-    mk.dependency 'SDWebImage/Core'
-  end
+  # s.subspec 'MapKit' do |mk|
+  #   mk.source_files = 'SDWebImage/MKAnnotationView+WebCache.*'
+  #   mk.framework = 'MapKit'
+  #   mk.dependency 'SDWebImage/Core'
+  # end
 
-  s.subspec 'WebP' do |webp|
-    webp.source_files = 'SDWebImage/UIImage+WebP.{h,m}'
-    webp.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) SD_WEBP=1' }
-    webp.dependency 'SDWebImage/Core'
-    webp.dependency 'libwebp'
-  end
+  # s.subspec 'WebP' do |webp|
+  #   webp.source_files = 'SDWebImage/UIImage+WebP.{h,m}'
+  #   webp.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) SD_WEBP=1' }
+  #   webp.dependency 'SDWebImage/Core'
+  #   webp.dependency 'libwebp'
+  # end
+
 end
