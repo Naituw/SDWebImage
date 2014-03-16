@@ -735,7 +735,7 @@
 		53922D66148C55810056699D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Dailymotion;
 			};
 			buildConfigurationList = 53922D69148C55810056699D /* Build configuration list for PBXProject "SDWebImage" */;
@@ -1109,9 +1109,10 @@
 				HEADER_SEARCH_PATHS = Vendors/libwebp/src;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
 				PUBLIC_HEADERS_FOLDER_PATH = include/SDWebImage;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1140,7 +1141,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PUBLIC_HEADERS_FOLDER_PATH = include/SDWebImage;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1189,6 +1190,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1223,6 +1225,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
