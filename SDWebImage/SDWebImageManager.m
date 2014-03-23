@@ -24,6 +24,7 @@
 @property (strong, nonatomic, readwrite) SDWebImageDownloader *imageDownloader;
 @property (strong, nonatomic) NSMutableArray *failedURLs;
 @property (strong, nonatomic) NSMutableArray *runningOperations;
+@property (strong, nonatomic) NSOperationQueue *storeImageQueue;
 
 @end
 
@@ -37,6 +38,11 @@
     return instance;
 }
 
+- (void)dealloc
+{
+    [_storeImageQueue cancelAllOperations];
+}
+
 - (id)init
 {
     if ((self = [super init]))
@@ -45,6 +51,8 @@
         _imageDownloader = [self createDownloader];
         _failedURLs = NSMutableArray.new;
         _runningOperations = NSMutableArray.new;
+        _storeImageQueue = NSOperationQueue.new;
+        _storeImageQueue.maxConcurrentOperationCount = 2;
     }
     return self;
 }
@@ -213,8 +221,7 @@
                     }
                     else if (downloadedImage && stylerKey)
                     {
-                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-                            
+                        [_storeImageQueue addOperationWithBlock:^{
                             UIImage *transformedImage = downloadedImage;
                             NSData *dataToStore = data;
                             
@@ -247,8 +254,7 @@
                             {
                                 [self.imageCache storeImage:transformedImage imageData:dataToStore forKey:key toDisk:cacheOnDisk];
                             }
-                        });
-
+                        }];
                     }
                     // NOTE: We don't call transformDownloadedImage delegate method on animated images as most transformation code would mangle it
                     else if (downloadedImage && !downloadedImage.images && [self.delegate respondsToSelector:@selector(imageManager:transformDownloadedImage:withURL:)])
