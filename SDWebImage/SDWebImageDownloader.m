@@ -210,7 +210,7 @@ static NSString *const kCompletedCallbackKey = @"completed";
         }
     };
     
-    dispatch_barrier_async(self.barrierQueue, barrierBlock);
+    dispatch_barrier_sync(self.barrierQueue, barrierBlock);
 }
 
 - (NSArray *)callbacksForURL:(NSURL *)url
