@@ -350,5 +350,7 @@
     }
 }
 
+@synthesize executing = _executing;
+@synthesize finished = _finished;
 
 @end
