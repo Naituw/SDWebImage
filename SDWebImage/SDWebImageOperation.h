@@ -12,4 +12,6 @@
 
 - (void)cancel;
 
+@property (nonatomic, readonly) NSString * imageURL;
+
 @end

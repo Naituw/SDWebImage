@@ -122,6 +122,11 @@
     [self reset];
 }
 
+- (NSString *)imageURL
+{
+    return self.request.URL.absoluteString;
+}
+
 - (void)done
 {
     self.finished = YES;

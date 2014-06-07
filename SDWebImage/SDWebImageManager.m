@@ -15,6 +15,7 @@
 @property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
 @property (copy, nonatomic) void (^cancelBlock)();
 @property (strong, nonatomic) NSOperation *cacheOperation;
+@property (retain, nonatomic) NSString * imageURL;
 
 @end
 
@@ -120,6 +121,8 @@
 
     __block SDWebImageCombinedOperation *operation = SDWebImageCombinedOperation.new;
     __weak SDWebImageCombinedOperation *weakOperation = operation;
+    
+    operation.imageURL = url.absoluteString;
     
     BOOL isFailedUrl = NO;
     @synchronized(self.failedURLs)
@@ -327,6 +330,24 @@
     {
         [self.runningOperations makeObjectsPerformSelector:@selector(cancel)];
         [self.runningOperations removeAllObjects];
+    }
+}
+
+- (void)cancelOperationWithImageURL:(NSString *)url
+{
+    @synchronized(self.runningOperations)
+    {
+        NSMutableIndexSet * indexes = [NSMutableIndexSet indexSet];
+        
+        [self.runningOperations enumerateObjectsUsingBlock:^(id<SDWebImageOperation> obj, NSUInteger idx, BOOL *stop) {
+            if ([[obj imageURL] isEqual:url])
+            {
+                [obj cancel];
+                [indexes addIndex:idx];
+            }
+        }];
+        
+        [self.runningOperations removeObjectsAtIndexes:indexes];
     }
 }
 
