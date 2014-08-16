@@ -70,9 +70,11 @@
 
     if (self.connection)
     {
-        if (self.progressBlock)
+        SDWebImageDownloaderProgressBlock progressBlock = self.progressBlock; // prevents race condition
+        
+        if (progressBlock)
         {
-            self.progressBlock(0, -1);
+            progressBlock(0, -1);
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWebImageDownloadStartNotification object:self];
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_5_1)
