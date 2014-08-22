@@ -108,7 +108,8 @@
 {
     if (self.isFinished) return;
     [super cancel];
-    if (self.cancelBlock) self.cancelBlock();
+    void (^cancelBlock)() = self.cancelBlock;
+    if (cancelBlock) cancelBlock();
 
     if (self.connection)
     {
