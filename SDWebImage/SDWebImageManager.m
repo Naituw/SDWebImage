@@ -216,6 +216,12 @@
                     }
                     else if (downloadedImage && stylerKey)
                     {
+                        if (downloadedImage && finished)
+                        {
+                            // store original image to cache first
+                            [self.imageCache storeImage:downloadedImage imageData:data forKey:[self cacheKeyForURL:url] toDisk:cacheOnDisk];
+                        }
+                        
                         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
                             
                             UIImage *transformedImage = downloadedImage;
