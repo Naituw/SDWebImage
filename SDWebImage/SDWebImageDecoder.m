@@ -14,18 +14,34 @@
 
 + (UIImage *)decodedImageWithImage:(UIImage *)image
 {
-#if TARGET_IPHONE_OS
-    if (image.images)
+    if ([image sd_isAnimatedGif])
     {
         // Do not decode animated images
         return image;
     }
 
+#if TARGET_IPHONE_OS
     CGImageRef imageRef = image.CGImage;
+#else
+    CGImageRef imageRef = [image CGImageForProposedRect:NULL context:NULL hints:nil];
+#endif
+    
     CGSize imageSize = CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef));
     CGRect imageRect = (CGRect){.origin = CGPointZero, .size = imageSize};
 
+#if TARGET_IPHONE_OS
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+#else
+    CGColorSpaceRef colorspace = CGDisplayCopyColorSpace(CGMainDisplayID());
+    if (!colorspace) {
+        colorspace = CGColorSpaceCreateDeviceRGB();
+    }
+#endif
+    
+    if (!colorspace) {
+        return image;
+    }
+    
     CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
 
     int infoMask = (bitmapInfo & kCGBitmapAlphaInfoMask);
@@ -35,7 +51,7 @@
 
     // CGBitmapContextCreate doesn't support kCGImageAlphaNone with RGB.
     // https://developer.apple.com/library/mac/#qa/qa1037/_index.html
-    if (infoMask == kCGImageAlphaNone && CGColorSpaceGetNumberOfComponents(colorSpace) > 1)
+    if (infoMask == kCGImageAlphaNone && CGColorSpaceGetNumberOfComponents(colorspace) > 1)
     {
         // Unset the old alpha info.
         bitmapInfo &= ~kCGBitmapAlphaInfoMask;
@@ -44,7 +60,7 @@
         bitmapInfo |= kCGImageAlphaNoneSkipFirst;
     }
     // Some PNGs tell us they have alpha but only 3 components. Odd.
-    else if (!anyNonAlpha && CGColorSpaceGetNumberOfComponents(colorSpace) == 3)
+    else if (!anyNonAlpha && CGColorSpaceGetNumberOfComponents(colorspace) == 3)
     {
         // Unset the old alpha info.
         bitmapInfo &= ~kCGBitmapAlphaInfoMask;
@@ -57,9 +73,9 @@
                                                  imageSize.height,
                                                  CGImageGetBitsPerComponent(imageRef),
                                                  0,
-                                                 colorSpace,
+                                                 colorspace,
                                                  bitmapInfo);
-    CGColorSpaceRelease(colorSpace);
+    CGColorSpaceRelease(colorspace);
 
     // If failed, return undecompressed image
     if (!context) return image;
@@ -69,11 +85,36 @@
 	
     CGContextRelease(context);
 	
-    UIImage *decompressedImage = [UIImage imageWithCGImage:decompressedImageRef scale:image.scale orientation:image.imageOrientation];
+#if TARGET_IPHONE_OS
+    UIImage * decompressedImage = [UIImage imageWithCGImage:decompressedImageRef scale:image.scale orientation:image.imageOrientation];
+#else
+    UIImage * decompressedImage = [UIImage imageWithCGImage:decompressedImageRef];
+#endif
     CGImageRelease(decompressedImageRef);
     return decompressedImage;
+}
+
+- (BOOL)sd_isAnimatedGif
+{
+#if TARGET_IPHONE_OS
+    return self.images != nil;
 #else
-    return image;
+    @try {
+        NSArray * reps = [self representations];
+        for (NSImageRep * rep in reps)
+        {
+            if ([rep isKindOfClass:[NSBitmapImageRep class]] == YES)
+            {
+                NSBitmapImageRep * bitmapRep = (NSBitmapImageRep *)rep;
+                int numFrame = [[bitmapRep valueForProperty:NSImageFrameCount] intValue];
+                return numFrame > 1;
+            }
+        }
+    }@catch (NSException * e) {
+    }
+    @finally {
+    }
+    return NO;
 #endif
 }
 
