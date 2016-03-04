@@ -305,7 +305,7 @@ static const NSInteger kDefaultCacheMaxCacheAge = 60 * 60 * 24 * 7; // 1 week
         doneBlock(image, SDImageCacheTypeMemory);
         return nil;
     }
-
+    
     dispatch_async(self.ioQueue, ^
     {
         if (operation.isCancelled)

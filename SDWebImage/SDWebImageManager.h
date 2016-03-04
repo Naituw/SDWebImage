@@ -174,6 +174,8 @@ SDWebImageManager *manager = [SDWebImageManager sharedManager];
 
 - (void)cancelOperationWithImageURL:(NSString *)url;
 
+- (void)cancelOperation:(id<SDWebImageOperation>)operation;
+
 /**
  * Check one or more operations running
  */

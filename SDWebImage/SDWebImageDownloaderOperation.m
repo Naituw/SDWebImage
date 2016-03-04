@@ -305,13 +305,7 @@
             UIImage *image = [UIImage sd_imageWithData:self.imageData];
             
             image = [self scaledImageForKey:self.request.URL.absoluteString image:image];
-            
-#if TARGET_IPHONE_OS
-            if (!image.images) // Do not force decod animated GIFs
-            {
-                image = [UIImage decodedImageWithImage:image];
-            }
-#endif
+            image = [UIImage decodedImageWithImage:image];
             
             if (CGSizeEqualToSize(image.size, CGSizeZero))
             {

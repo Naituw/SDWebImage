@@ -239,8 +239,7 @@
                                     CGImageRef CGImage = [transformedImage CGImageForProposedRect:NULL context:NULL hints:nil];
                                     NSMutableData * imageData = [NSMutableData data];
                                     CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)imageData, (CFStringRef)kUTTypePNG, 1, NULL);
-                                    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:@(1.0), kCGImageDestinationLossyCompressionQuality, nil];
-                                    CGImageDestinationAddImage(destination, CGImage, (__bridge CFDictionaryRef)properties);
+                                    CGImageDestinationAddImage(destination, CGImage, nil);
                                     CGImageDestinationFinalize(destination);
                                     CFRelease(destination);
                                     dataToStore = imageData;
@@ -354,6 +353,17 @@
         }];
         
         [self.runningOperations removeObjectsAtIndexes:indexes];
+    }
+}
+
+- (void)cancelOperation:(id<SDWebImageOperation>)operation
+{
+    @synchronized(self.runningOperations)
+    {
+        if ([self.runningOperations containsObject:operation]) {
+            [operation cancel];
+            [self.runningOperations removeObject:operation];
+        }
     }
 }
 
