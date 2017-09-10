@@ -139,11 +139,21 @@
 
 - (void)reset
 {
-    self.cancelBlock = nil;
-    self.completedBlock = nil;
-    self.progressBlock = nil;
-    self.connection = nil;
-    self.imageData = nil;
+    void (^block)(void) = ^{
+        self.cancelBlock = nil;
+        self.completedBlock = nil;
+        self.progressBlock = nil;
+        self.connection = nil;
+        self.imageData = nil;
+    };
+    
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            block();
+        });
+    }
 }
 
 - (void)setFinished:(BOOL)finished
